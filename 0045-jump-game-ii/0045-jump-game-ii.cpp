@@ -17,7 +17,17 @@ public:
     }
     int jump(vector<int>& nums) {
         int n = nums.size();
-        vector<int> dp(n+1 , -1);
-        return f(0 , nums , dp);
+        vector<int> dp(n+1 , 0);
+        dp[n-1] = 0;
+        for(int idx = n-2 ; idx >= 0 ; idx--){
+            int min_jumps = 10001;
+            for(int j = 1 ; j <= nums[idx] ; j++){
+                if(idx + j <= nums.size() - 1){
+                    min_jumps = min(min_jumps , 1 + dp[idx + j]);
+                }
+            }
+            dp[idx] = min_jumps;
+        }
+        return dp[0];
     }
 };
