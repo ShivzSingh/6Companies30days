@@ -5,7 +5,7 @@ public:
         int maxSum = nums[0];
         int currSum = nums[0];
         for(int i = 1 ; i < n ; i++){
-            if(currSum > 0){
+            if(currSum >= 0){
                 currSum += nums[i];
                 maxSum = max(maxSum , currSum);
             }
