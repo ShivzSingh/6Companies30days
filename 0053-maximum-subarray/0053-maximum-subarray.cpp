@@ -3,18 +3,12 @@ public:
     int maxSubArray(vector<int>& nums) {
         int n = nums.size();
         int maxSum = nums[0];
-        int currSum = nums[0];
+        int dp[n];
+        dp[0] = nums[0];
         for(int i = 1 ; i < n ; i++){
-            if(currSum >= 0){
-                currSum += nums[i];
-                maxSum = max(maxSum , currSum);
-            }
-            else{
-                currSum = nums[i];
-                maxSum = max(maxSum , currSum);
-            }
+            dp[i] = nums[i] + (dp[i-1] > 0 ? dp[i-1] : 0);
+            maxSum = max(maxSum , dp[i]);
         }
         return maxSum;
-        
     }
 };
