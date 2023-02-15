@@ -1,3 +1,4 @@
+**Kadanes Algo**
 int maxSubArray(vector<int>& nums) {
 int curr_sum = nums[0];
 int best_sum = nums[0];
