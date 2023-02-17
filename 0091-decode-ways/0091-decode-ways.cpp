@@ -22,7 +22,23 @@ public:
         return dp[idx] = ans;
     }
     int numDecodings(string s) {
-        vector<int> dp(s.size() + 1 , -1);
-        return f(0 , s , dp);
+        vector<int> dp(s.size() + 1 , 0);
+        dp[s.size()] = 1;
+        for(int idx = s.size() - 1 ; idx >= 0 ; idx--){
+            int opt1 , opt2 = 0;
+            opt1 = s[idx] - '0';
+            if(idx < s.size() - 1){
+                opt2 = opt1*10 + s[idx+1] - '0';
+            }
+            int ans = 0;
+            if(opt1 > 0){
+                ans += dp[idx+1];
+            }
+            if(opt1 > 0 && opt2 > 0 && opt2 <=26){
+                ans += dp[idx+2];
+            }
+            dp[idx] = ans;
+        }
+        return dp[0];
     }
 };
